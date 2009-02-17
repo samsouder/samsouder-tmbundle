@@ -6,19 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-	text = STDIN.read
-
-	out_text = text.split("\n").each { |x| x.strip! }.delete_if { |x| ['{', '}', '{}', ''].include? x }.collect! { |x| ( ( ENV['TM_SOFT_TABS'] == 'YES' ) ? ' ' * ENV['TM_TAB_SIZE'].to_i : "\t" ) + x }.sort!
-
-	if ( out_text.size > 1 )
-	  print "{\n" unless !text["{"]
-	  print out_text.join("\n")
-	  print "\n}" unless !text["}"]
-	else
-	  print "{ " unless !text["{"]
-	  print out_text.collect { |x| x.strip! }.join(' ')
-	  print " }" unless !text["}"]
-	end
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/reformat_css'
 </string>
 	<key>fallbackInput</key>
 	<string>scope</string>
