@@ -1,56 +1,32 @@
-#!/usr/bin/env ruby
-# INPUT = "{
-#   position: absolute;
-#   top: 0;
-#   right: 0;
-#   left: 0;
-#   padding: 1px 15px 0 15px;
-#   height: 15px;
-#   line-height: 1.2em;
-#   color: #999;
-#   text-transform: uppercase;
-#   font-weight: bold;
-#   border: 1px solid #aaa;
-#   background: #ddd;
-#   -webkit-border-top-left-radius: 5px;
-#   -webkit-border-top-right-radius: 5px;
-#   -moz-border-radius-topleft: 5px;
-#   -moz-border-radius-topright: 5px;
-# }"
-# INPUT = "{
-#   -moz-border-radius-topleft: 5px;
-# }"
-# INPUT = "
-#   position: absolute;
-#   top: 0;
-#   color: #999;
-#   right: 0;
-#   -webkit-border-top-left-radius: 5px;
-#   -moz-border-radius-topright: 5px;
-# "
-# INPUT = "{ color: red; background-position: left 0; }"
-# INPUT = " color: red; background-position: left 0; "
-# ENV['TM_SOFT_TABS'] = 'YES'
-# ENV['TM_TAB_SIZE'] = '2'
-# text = INPUT
-text = STDIN.read
-
-# split by each line
-out_text = text.split(/\;|\n/)
-
-# strip whitespace and remove any blank or bracketed lines
-out_text = out_text.each { |x| x.strip!; x.gsub!('{ ', '') }.delete_if { |x| ['{', '}', '{}', ''].include? x }
-
-out_text.collect! { |x| ( ( ENV['TM_SOFT_TABS'] == 'YES' ) ? ' ' * ENV['TM_TAB_SIZE'].to_i : "\t" ) + x }.sort!
-
-# puts out_text.inspect
-
-if ( out_text.size > 1 )
-  print "{\n" unless !text["{"]
-  print out_text.join(";\n")
-  print "\n}" unless !text["}"]
-else
-  print "{ " unless !text["{"]
-  print out_text.collect { |x| x.strip! }.join('; ')
-  print " }" unless !text["}"]
+require File.dirname(__FILE__) + '/config'
+module Reformat
+  class CSS
+    def initialize(config = {})
+      Config.setup(config)
+      @tab_chars = ( Config[:soft_tabs] == 'YES' ) ? ' ' * Config[:tab_size].to_i : "\t"
+    end
+    def run
+      # split by each line
+      lines = Config[:input].split(/\;|\n/)
+      
+      # strip whitespace and remove any blank or bracketed lines
+      lines.each { |x| ['{', '}'].each { |y| x.gsub!(y, '') }; x.strip!; }.delete_if { |x| x.empty? }
+      
+      # entab the lines to match preferences
+      lines.collect! { |x| @tab_chars + x }.sort!
+      
+      output = ''
+      if ( lines.length > 1 )
+        output << "{\n" unless !Config[:input]["{"]
+        output << lines.join(";\n")
+        output << "\n}" unless !Config[:input]["}"]
+      else
+        output << "{ " unless !Config[:input]["{"]
+        output << lines.collect { |x| x.strip! }.join('; ')
+        output << " }" unless !Config[:input]["}"]
+      end
+      
+      output
+    end
+  end
 end

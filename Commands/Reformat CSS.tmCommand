@@ -7,6 +7,7 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require ENV['TM_BUNDLE_SUPPORT'] + '/lib/reformat_css'
+print Reformat::CSS.new({ :input =&gt; STDIN.read, :soft_tabs =&gt; ENV['TM_SOFT_TABS'], :tab_size =&gt; ENV['TM_TAB_SIZE'] }).run
 </string>
 	<key>fallbackInput</key>
 	<string>scope</string>
