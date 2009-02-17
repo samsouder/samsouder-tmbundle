@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+class String
+  def escape(char)
+    gsub(/\\.|#{Regexp.quote(char)}/) { |match| match == char ? "\\#{char}" : match }
+  end
+
+  def unescape(char)
+    gsub(/\\./) { |match| match == "\\#{char}" ? char : match }
+  end
+end
+
+print case str = STDIN.read
+  # Handle standard quotes
+  when /\A"(.*)"\z/m; "'"   + $1.unescape('"').escape("'") + "'"
+  when /\A'(.*)'\z/m; '"' + $1.unescape("'").escape('"') + '"'
+
+  # Default case
+  else str
+end
+</string>
+	<key>fallbackInput</key>
+	<string>scope</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^"</string>
+	<key>name</key>
+	<string>Toggle Quote Style</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>string.quoted.double.php, string.quoted.single.php, string.quoted.double.js, string.quoted.single.js</string>
+	<key>uuid</key>
+	<string>78158306-1E60-48DB-A54B-BB94A523B103</string>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>log_message("${3:message}", ${1:LOG_LEVEL_EMERG|LOG_LEVEL_ALERT|LOG_LEVEL_CRIT|LOG_LEVEL_ERR|LOG_LEVEL_WARNING|LOG_LEVEL_NOTICE|LOG_LEVEL_INFO|LOG_LEVEL_DEBUG});$0</string>
+	<key>name</key>
+	<string>BitLeap Logging</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>blog</string>
+	<key>uuid</key>
+	<string>E426E6A5-63F2-4C26-B89E-AA22BC78539B</string>
+</dict>
+</plist>
