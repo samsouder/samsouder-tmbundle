@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-puts `cd "#{ENV['TM_BUNDLE_SUPPORT']}"; #{ENV['TM_GIT']} pull`</string>
+puts `cd "#{ENV['TM_BUNDLE_SUPPORT']||'git'}"; #{ENV['TM_GIT']} pull`</string>
 	<key>fallbackInput</key>
 	<string>scope</string>
 	<key>input</key>
