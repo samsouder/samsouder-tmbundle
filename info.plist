@@ -2,8 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>mainMenu</key>
+	<dict>
+		<key>items</key>
+		<array>
+			<string>BDB573FD-71A0-4578-9E81-22FB0DC2C03F</string>
+			<string>E426E6A5-63F2-4C26-B89E-AA22BC78539B</string>
+			<string>------------------------------------</string>
+			<string>78158306-1E60-48DB-A54B-BB94A523B103</string>
+			<string>373CD46F-BEA1-4FFF-8D05-F388A2C7E0AB</string>
+			<string>AD9CB1E0-65DF-4B4F-8B19-ADB5756F38AD</string>
+			<string>------------------------------------</string>
+			<string>57B547E6-8B54-419C-9F64-09700B29904A</string>
+		</array>
+		<key>submenus</key>
+		<dict/>
+	</dict>
 	<key>name</key>
 	<string>Sam Souder</string>
+	<key>ordering</key>
+	<array>
+		<string>E426E6A5-63F2-4C26-B89E-AA22BC78539B</string>
+		<string>BDB573FD-71A0-4578-9E81-22FB0DC2C03F</string>
+		<string>373CD46F-BEA1-4FFF-8D05-F388A2C7E0AB</string>
+		<string>AD9CB1E0-65DF-4B4F-8B19-ADB5756F38AD</string>
+		<string>78158306-1E60-48DB-A54B-BB94A523B103</string>
+		<string>57B547E6-8B54-419C-9F64-09700B29904A</string>
+	</array>
 	<key>uuid</key>
 	<string>77F28689-C7D3-40CE-9215-BB44433BF1ED</string>
 </dict>
