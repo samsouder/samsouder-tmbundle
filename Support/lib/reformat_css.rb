@@ -23,11 +23,17 @@ module Reformat
       lines = lines.split(/\n/)
       
       # split up multiple statments in one line
-      # FIXME: only works with two statements on a line
       if lines.length == 1
-        if lines.first.match(%r{;\s?(/\*.*?\*/)?})
-          lines = [$` + $&, $']
-        end
+        lines = lines.first.split(/;|\*\//)
+        
+        # put comments back with their respective lines
+        lines.each_with_index { |x,i|
+          if x.match(/\/\*/)
+            lines[i-1] << ';' if lines[i-1].match(';').nil?
+            lines[i-1] << x
+            lines.delete(x)
+          end
+        }
       end
       
       # strip whitespace and remove any blank or bracketed lines
@@ -35,8 +41,16 @@ module Reformat
       
       # entab the lines to match preferences and always end in a semicolon
       lines.collect! do |x|
-        @tab_chars + x + ( x.match(';').nil? ? ';' : '')
-      end.sort!
+        # put back end comments where needed
+        if x.match(/\/\*/) && !x.match(/\*\//)
+          @tab_chars + x << ' */'
+        else
+          @tab_chars + x + ( x.match(';').nil? ? ';' : '')
+        end
+      end
+      
+      # TODO implement some custom sorting
+      lines.sort!
       
       # reassemble with on one or many lines and with appropriate brackets from the original
       output = ''
