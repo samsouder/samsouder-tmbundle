@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+require ENV['TM_BUNDLE_SUPPORT'] + '/lib/path_complete'
+print PathComplete::Path.new({ :input =&gt; STDIN.read, :project_dir =&gt; ENV['TM_PROJECT_DIRECTORY'], :file_path =&gt; ENV['TM_FILEPATH'] }).run</string>
+	<key>fallbackInput</key>
+	<string>line</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>	</string>
+	<key>name</key>
+	<string>Tab in Include</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>meta.include.php</string>
+	<key>uuid</key>
+	<string>DF65BD6E-20C6-41A9-B641-84F1D6871FA3</string>
+</dict>
+</plist>
