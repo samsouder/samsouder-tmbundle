@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>timer_log("${1:event name}");
+timer_log("$1", true);$0</string>
+	<key>name</key>
+	<string>BitLeap Timer Logging</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>tlog</string>
+	<key>uuid</key>
+	<string>BF4F94F0-A5BB-447A-BE44-1FF88234B2F4</string>
+</dict>
+</plist>
